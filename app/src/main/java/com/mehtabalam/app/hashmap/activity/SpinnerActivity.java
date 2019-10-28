@@ -1,14 +1,18 @@
-package com.mehtabalam.app.hashmap;
+package com.mehtabalam.app.hashmap.activity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.Toast;
-import java.util.HashMap;
+
+import com.mehtabalam.app.hashmap.CustomSpinner;
+import com.mehtabalam.app.hashmap.R;
+import com.mehtabalam.app.hashmap.modal.spinnerHashmap;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class SpinnerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,29 +21,16 @@ public class MainActivity extends AppCompatActivity {
 
         Spinner spinner = findViewById(R.id.spinnerId);
 
-        final CustomSpinner customHashMap = new CustomSpinner(this, HashMapModel.hashMap, spinner);
+        final CustomSpinner customHashMap = new CustomSpinner(this, spinnerHashmap.hashMap, spinner);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 customHashMap.onItemSelected(adapterView, view, i, l);
-                Toast.makeText(MainActivity.this, customHashMap.getSpinnerSelection(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SpinnerActivity.this, customHashMap.getSpinnerSelection(), Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
     }
-}
-
-
-class HashMapModel {
-
-     static final HashMap<String, String> hashMap = new HashMap<String, String>() {{
-        put("A", "Android");
-        put("B", "Base64");
-        put("C", "Catalog");
-        put("D", "Design");
-        put("E", "Enum");
-        put("F", "Formatter");
-    }};
 }
